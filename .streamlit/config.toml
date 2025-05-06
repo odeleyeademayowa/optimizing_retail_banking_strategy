@@ -1,0 +1,6 @@
+# .streamlit/config.toml
+
+[server]
+headless = true
+port = 8501  # You can change the port if needed
+enableCORS = false  # Disable CORS for local development (if necessary)
