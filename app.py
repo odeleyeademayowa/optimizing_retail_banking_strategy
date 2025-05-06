@@ -5,9 +5,14 @@ import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Use a default file stored in the app folder for seamless deployment
-file_path = "data/cluster_rfm.csv"  # Assuming the file is in a folder named "data"
-df = pd.read_csv(file_path)
+st.title("Upload CSV for Analysis")
+uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+
+if uploaded_file:
+    df = pd.read_csv(uploaded_file)
+    st.dataframe(df.head())
+else:
+    st.warning("Please upload a CSV file to proceed.")
 
 # Streamlit configuration
 st.set_page_config(page_title="Customer Segmentation Dashboard", layout="wide")
