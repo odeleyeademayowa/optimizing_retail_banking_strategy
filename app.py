@@ -92,28 +92,6 @@ metric = st.selectbox("Select Metric", ['Recency', 'Frequency', 'Monetary'])
 fig6 = px.histogram(filtered_df, x=metric, color='Cluster', nbins=30, title=f"Distribution of {metric}")
 st.plotly_chart(fig6)
 
-# Top 10 High-Value Customers
-top_customers = filtered_df.sort_values(by='Monetary', ascending=False).head(10).reset_index(drop=True)
-
-st.subheader("🏆 Top 10 High-Value Customers")
-st.dataframe(top_customers[['CustomerID', 'Recency', 'Frequency', 'Monetary', 'Cluster']])
-
-
-# Bar Chart for Top 10 Customers by Monetary Value
-st.subheader("💰 Monetary Value of Top 10 Customers")
-fig3 = px.bar(
-    top_customers,
-    x='CustomerID',
-    y='Monetary',
-    color='Cluster',
-    title="Top 10 Customers by Monetary Value",
-    text='Monetary'
-)
-fig3.update_traces(texttemplate='%{text:.2s}', textposition='outside')
-fig3.update_layout(xaxis_tickangle=-45)
-st.plotly_chart(fig3)
-
-
 # Raw Data
 with st.expander("📋 Show Raw Data"):
     st.dataframe(filtered_df)
