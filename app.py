@@ -36,7 +36,7 @@ st.plotly_chart(fig1)
 # Cluster descriptions
 st.markdown("### 📘 Cluster Descriptions")
 cluster_desc = {
-    0: "💎 Potential.",
+    0: "💡 Potential.",
     1: "🚶 Cold Leads.",
     2: "💎 High-value.",
 }
@@ -53,13 +53,14 @@ st.plotly_chart(fig2)
 
 # Boxplot of RFM Scores (New Section)
 st.write("Boxplot of RFM Scores")
-plt.figure(figsize=(10, 6))
-sns.boxplot(data=filtered_df[["Recency", "Frequency", "Monetary", "RFM_Score"]])
-plt.title("Clusters' Features")
-plt.xlabel('Features')
-plt.ylabel('Values')
-st.pyplot()
+fig, ax = plt.subplots(figsize=(10, 6))  # Create a figure and axis object
+sns.boxplot(data=filtered_df[["Recency", "Frequency", "Monetary", "RFM_Score"]], ax=ax)  # Pass axis to sns.boxplot
+ax.set_title("Clusters' Features")
+ax.set_xlabel('Features')
+ax.set_ylabel('Values')
+st.pyplot(fig)  # Pass the figure to st.pyplot()
 
 # Raw data preview
 with st.expander("📋 Show Raw Data"):
     st.dataframe(filtered_df)
+
